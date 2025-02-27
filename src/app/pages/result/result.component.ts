@@ -29,7 +29,6 @@ export class ResultComponent {
         this.originalContent = state.original || '';
         this.fileName = state.fileName || '';
         this.result = state.result;
-
         // Debug to see what's actually in the result
         console.log('Result in component:', this.result);
       } else {
@@ -77,6 +76,7 @@ export class ResultComponent {
       : 'bg-green-500 text-white';
   }
   getLanguageName(): string {
+    console.log('Result object:', this.result); // Debugging
     return this.result?.targetLanguage || 'Unknown';
   }
 

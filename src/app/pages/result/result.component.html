@@ -3,8 +3,12 @@
   <div class="mb-6 flex justify-between items-center">
     <h1 class="text-3xl font-bold text-secondary">{{ getResultTitle() }}</h1>
     <div>
-      <button (click)="goBack()" class="btn-light mr-5">Back</button>
-      <button (click)="navigateHome()" class="btn-dark">Back to Home</button>
+      <button (click)="goBack()" class="btn-light mr-5 font-semibold">
+        Back
+      </button>
+      <button (click)="navigateHome()" class="btn-dark font-semibold">
+        Back to Home
+      </button>
     </div>
   </div>
 
@@ -28,7 +32,7 @@
         </div>
 
         <div class="section">
-          <h3 class="sub_title">Translated Text ({{ getLanguageName() }})</h3>
+          <h3 class="sub_title">Translated Text</h3>
           <div class="box_content">
             <p>{{ result?.data?.result || "No translation available" }}</p>
           </div>

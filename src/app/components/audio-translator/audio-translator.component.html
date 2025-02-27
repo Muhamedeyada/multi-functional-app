@@ -1,7 +1,7 @@
 <div
   class="w-80 mt-2 p-6 bg-light/10 backdrop-blur-xl border border-white/20 rounded-lg shadow-2xl"
 >
-  <h2 class="text-2xl font-bold mb-6 text-light drop-shadow-lg">
+  <h2 class="text-2xl font-bold mb-6 text-white drop-shadow-lg">
     Audio Translation
   </h2>
 
@@ -30,22 +30,33 @@
         name="targetLanguage"
         class="mt-1 p-3 w-full border border-white/20 bg-light/20 rounded-md text-dark shadow-sm"
       >
+        <!-- Default Option (Placeholder) -->
+        <option value="" disabled>Select Language ▼</option>
+
+        <!-- Dynamic Language Options -->
         <option *ngFor="let language of languages" [value]="language.code">
           {{ language.name }}
         </option>
       </select>
     </div>
-
     <!-- Submit Button -->
     <button
       type="submit"
       [disabled]="isLoading || !selectedFile"
-      class="w-full bg-primary text-light p-3 font-semibold rounded-lg hover:bg-hoverPrimary transition shadow-lg backdrop-blur-md"
+      class="w-full bg-primary text-light p-3 font-semibold rounded-lg hover:bg-hoverPrimary transition shadow-lg flex justify-center items-center backdrop-blur-md"
       [ngClass]="{
         'opacity-50 cursor-not-allowed': isLoading || !selectedFile
       }"
     >
-      {{ isLoading ? "Translating..." : "Translate Audio" }}
+      <span *ngIf="!isLoading">Translate</span>
+      <div *ngIf="isLoading" class="wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="shadow"></div>
+        <div class="shadow"></div>
+        <div class="shadow"></div>
+      </div>
     </button>
   </form>
 
