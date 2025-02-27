@@ -1,0 +1,44 @@
+<div class="max-w-md mx-auto mt-6 p-6 bg-white rounded-lg shadow-md">
+  <h2 class="text-2xl font-bold mb-6">Audio Translation</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+      <label class="block text-gray-700">Upload Audio File</label>
+      <input
+        type="file"
+        (change)="onFileChange($event)"
+        accept="audio/*"
+        class="mt-1 p-2 w-full border rounded-md"
+      />
+      <p *ngIf="selectedFile" class="mt-2 text-sm text-gray-600">
+        Selected file: {{ selectedFile.name }} ({{ getFileSize() }})
+      </p>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-700">Target Language</label>
+      <select
+        [(ngModel)]="targetLanguage"
+        name="targetLanguage"
+        class="mt-1 p-2 w-full border rounded-md"
+      >
+        <option *ngFor="let language of languages" [value]="language.code">
+          {{ language.name }}
+        </option>
+      </select>
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="isLoading || !selectedFile"
+      class="w-full bg-blue-500 text-white p-2 rounded-md"
+      [ngClass]="{
+        'opacity-50 cursor-not-allowed': isLoading || !selectedFile
+      }"
+    >
+      {{ isLoading ? "Translating..." : "Translate Audio" }}
+    </button>
+  </form>
+  <div *ngIf="errorMessage" class="mt-4 text-red-500">
+    <p>{{ errorMessage }}</p>
+  </div>
+</div>

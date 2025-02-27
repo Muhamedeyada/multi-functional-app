@@ -1,0 +1,93 @@
+<div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+  <h2 class="text-2xl font-bold mb-6">Diabetes Prediction</h2>
+  <button
+    (click)="navigateHome()"
+    class="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300"
+  >
+    Back to Home
+  </button>
+  <form (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+      <label class="block text-gray-700">Pregnancies</label>
+      <input
+        type="number"
+        [(ngModel)]="predictionData.Pregnancies"
+        name="Pregnancies"
+        class="mt-1 p-2 w-full border rounded-md"
+      />
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700">Glucose</label>
+      <input
+        type="number"
+        [(ngModel)]="predictionData.Glucose"
+        name="Glucose"
+        class="mt-1 p-2 w-full border rounded-md"
+      />
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700">Blood Pressure</label>
+      <input
+        type="number"
+        [(ngModel)]="predictionData.BloodPressure"
+        name="BloodPressure"
+        class="mt-1 p-2 w-full border rounded-md"
+      />
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700">Skin Thickness</label>
+      <input
+        type="number"
+        [(ngModel)]="predictionData.SkinThickness"
+        name="SkinThickness"
+        class="mt-1 p-2 w-full border rounded-md"
+      />
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700">Insulin</label>
+      <input
+        type="number"
+        [(ngModel)]="predictionData.Insulin"
+        name="Insulin"
+        class="mt-1 p-2 w-full border rounded-md"
+      />
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700">BMI</label>
+      <input
+        type="number"
+        [(ngModel)]="predictionData.BMI"
+        name="BMI"
+        class="mt-1 p-2 w-full border rounded-md"
+      />
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700">Diabetes Pedigree Function</label>
+      <input
+        type="number"
+        [(ngModel)]="predictionData.DiabetesPedigreeFunction"
+        name="DiabetesPedigreeFunction"
+        class="mt-1 p-2 w-full border rounded-md"
+      />
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700">Age</label>
+      <input
+        type="number"
+        [(ngModel)]="predictionData.Age"
+        name="Age"
+        class="mt-1 p-2 w-full border rounded-md"
+      />
+    </div>
+    <button
+      type="submit"
+      [disabled]="isLoading"
+      class="w-full bg-blue-500 text-white p-2 rounded-md"
+    >
+      {{ isLoading ? "Predicting..." : "Predict" }}
+    </button>
+  </form>
+  <div *ngIf="errorMessage" class="mt-4 text-red-500">
+    <p>{{ errorMessage }}</p>
+  </div>
+</div>

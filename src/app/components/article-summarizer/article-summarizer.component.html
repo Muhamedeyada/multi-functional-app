@@ -1,0 +1,27 @@
+<div class="max-w-md mx-auto mt-6 p-6 bg-white rounded-lg shadow-md">
+  <h2 class="text-2xl font-bold mb-6">Article Summarizer</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+      <label class="block text-gray-700">Article to Summarize</label>
+      <textarea
+        [(ngModel)]="article"
+        name="article"
+        rows="8"
+        class="mt-1 p-2 w-full border rounded-md"
+        placeholder="Paste your article content here..."
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="isLoading || !article"
+      class="w-full bg-blue-500 text-white p-2 rounded-md"
+      [ngClass]="{ 'opacity-50 cursor-not-allowed': isLoading || !article }"
+    >
+      {{ isLoading ? "Summarizing..." : "Summarize Article" }}
+    </button>
+  </form>
+  <div *ngIf="errorMessage" class="mt-4 text-red-500">
+    <p>{{ errorMessage }}</p>
+  </div>
+</div>
