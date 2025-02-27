@@ -1,0 +1,29 @@
+.form_group {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.form_style {
+  outline: none;
+  border: 2px solid #1e293b;
+  box-shadow: 3px 4px 0px 1px #2563eb;
+  width: 100%;
+  padding: 12px 10px;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: 0.2s;
+  background-color: rgba(248, 250, 252, 0.2); /* Light with Transparency */
+  color: #111827;
+}
+
+.form_style:focus {
+  transform: translateY(2px);
+  box-shadow: 1px 2px 0px 0px #2563eb;
+}
+
+.sub_title {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: rgba(248, 250, 252, 0.8); /* Light color with opacity */
+}

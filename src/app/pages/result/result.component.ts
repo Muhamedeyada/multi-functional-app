@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -15,7 +15,11 @@ export class ResultComponent {
   fileName: string = '';
   result: any = {};
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private location: Location
+  ) {}
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       const state = window.history.state;
@@ -77,7 +81,7 @@ export class ResultComponent {
   }
 
   goBack() {
-    this.router.navigate(['/']);
+    this.location.back(); // Goes to the previous page
   }
 
   navigateHome() {

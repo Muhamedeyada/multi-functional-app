@@ -1,93 +1,132 @@
-<div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
-  <h2 class="text-2xl font-bold mb-6">Diabetes Prediction</h2>
-  <button
-    (click)="navigateHome()"
-    class="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300"
-  >
-    Back to Home
-  </button>
-  <form (ngSubmit)="onSubmit()">
-    <div class="mb-4">
-      <label class="block text-gray-700">Pregnancies</label>
-      <input
-        type="number"
-        [(ngModel)]="predictionData.Pregnancies"
-        name="Pregnancies"
-        class="mt-1 p-2 w-full border rounded-md"
-      />
-    </div>
-    <div class="mb-4">
-      <label class="block text-gray-700">Glucose</label>
-      <input
-        type="number"
-        [(ngModel)]="predictionData.Glucose"
-        name="Glucose"
-        class="mt-1 p-2 w-full border rounded-md"
-      />
-    </div>
-    <div class="mb-4">
-      <label class="block text-gray-700">Blood Pressure</label>
-      <input
-        type="number"
-        [(ngModel)]="predictionData.BloodPressure"
-        name="BloodPressure"
-        class="mt-1 p-2 w-full border rounded-md"
-      />
-    </div>
-    <div class="mb-4">
-      <label class="block text-gray-700">Skin Thickness</label>
-      <input
-        type="number"
-        [(ngModel)]="predictionData.SkinThickness"
-        name="SkinThickness"
-        class="mt-1 p-2 w-full border rounded-md"
-      />
-    </div>
-    <div class="mb-4">
-      <label class="block text-gray-700">Insulin</label>
-      <input
-        type="number"
-        [(ngModel)]="predictionData.Insulin"
-        name="Insulin"
-        class="mt-1 p-2 w-full border rounded-md"
-      />
-    </div>
-    <div class="mb-4">
-      <label class="block text-gray-700">BMI</label>
-      <input
-        type="number"
-        [(ngModel)]="predictionData.BMI"
-        name="BMI"
-        class="mt-1 p-2 w-full border rounded-md"
-      />
-    </div>
-    <div class="mb-4">
-      <label class="block text-gray-700">Diabetes Pedigree Function</label>
-      <input
-        type="number"
-        [(ngModel)]="predictionData.DiabetesPedigreeFunction"
-        name="DiabetesPedigreeFunction"
-        class="mt-1 p-2 w-full border rounded-md"
-      />
-    </div>
-    <div class="mb-4">
-      <label class="block text-gray-700">Age</label>
-      <input
-        type="number"
-        [(ngModel)]="predictionData.Age"
-        name="Age"
-        class="mt-1 p-2 w-full border rounded-md"
-      />
-    </div>
+<div class="container mx-auto py-6">
+  <!-- Header (Outside Form Container) -->
+  <div class="mb-6 flex justify-between items-center">
+    <h1 class="text-4xl font-bold text-secondary">Diabetes Prediction</h1>
     <button
-      type="submit"
-      [disabled]="isLoading"
-      class="w-full bg-blue-500 text-white p-2 rounded-md"
+      (click)="navigateHome()"
+      class="px-5 py-2 bg-dark text-light rounded-md hover:bg-dark/80 transition"
     >
-      {{ isLoading ? "Predicting..." : "Predict" }}
+      Back to Home
     </button>
-  </form>
-  <div *ngIf="errorMessage" class="mt-4 text-red-500">
-    <p>{{ errorMessage }}</p>
+  </div>
+
+  <!-- Centered Form Container -->
+  <div class="w-full flex justify-center">
+    <div
+      class="bg-light/30 backdrop-blur-lg border border-white/20 rounded-lg shadow-lg w-full max-w-4xl p-6"
+    >
+      <form (ngSubmit)="onSubmit()">
+        <!-- Grid Layout for Form Inputs -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Pregnancies -->
+          <div class="form_group">
+            <label class="sub_title">Pregnancies</label>
+            <input
+              type="number"
+              [(ngModel)]="predictionData.Pregnancies"
+              name="Pregnancies"
+              class="form_style"
+            />
+          </div>
+
+          <!-- Glucose -->
+          <div class="form_group">
+            <label class="sub_title">Glucose</label>
+            <input
+              type="number"
+              [(ngModel)]="predictionData.Glucose"
+              name="Glucose"
+              class="form_style"
+            />
+          </div>
+
+          <!-- Blood Pressure -->
+          <div class="form_group">
+            <label class="sub_title">Blood Pressure</label>
+            <input
+              type="number"
+              [(ngModel)]="predictionData.BloodPressure"
+              name="BloodPressure"
+              class="form_style"
+            />
+          </div>
+
+          <!-- Skin Thickness -->
+          <div class="form_group">
+            <label class="sub_title">Skin Thickness</label>
+            <input
+              type="number"
+              [(ngModel)]="predictionData.SkinThickness"
+              name="SkinThickness"
+              class="form_style"
+            />
+          </div>
+
+          <!-- Insulin -->
+          <div class="form_group">
+            <label class="sub_title">Insulin</label>
+            <input
+              type="number"
+              [(ngModel)]="predictionData.Insulin"
+              name="Insulin"
+              class="form_style"
+            />
+          </div>
+
+          <!-- BMI -->
+          <div class="form_group">
+            <label class="sub_title">BMI</label>
+            <input
+              type="number"
+              [(ngModel)]="predictionData.BMI"
+              name="BMI"
+              class="form_style"
+            />
+          </div>
+
+          <!-- Diabetes Pedigree Function -->
+          <div class="form_group">
+            <label class="sub_title">Diabetes Pedigree Function</label>
+            <input
+              type="number"
+              [(ngModel)]="predictionData.DiabetesPedigreeFunction"
+              name="DiabetesPedigreeFunction"
+              class="form_style"
+            />
+          </div>
+
+          <!-- Age -->
+          <div class="form_group">
+            <label class="sub_title">Age</label>
+            <input
+              type="number"
+              [(ngModel)]="predictionData.Age"
+              name="Age"
+              class="form_style"
+            />
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="mt-6">
+          <button
+            type="submit"
+            [disabled]="isLoading"
+            class="w-full bg-primary text-light p-3 font-semibold rounded-lg hover:bg-hoverPrimary transition shadow-lg backdrop-blur-md"
+            [ngClass]="{ 'opacity-50 cursor-not-allowed': isLoading }"
+          >
+            {{ isLoading ? "Predicting..." : "Predict" }}
+          </button>
+        </div>
+      </form>
+
+      <!-- Error Message -->
+      <div
+        *ngIf="errorMessage"
+        class="mt-4 text-red-400 font-semibold text-center"
+      >
+        <p>{{ errorMessage }}</p>
+      </div>
+    </div>
   </div>
 </div>

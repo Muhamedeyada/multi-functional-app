@@ -1,129 +1,94 @@
-<!-- src/app/pages/result/result.component.html
-<div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
-  <h2 class="text-2xl font-bold mb-6">Prediction Result</h2>
-
-  <div *ngIf="prediction">
-    <p class="text-gray-700">Prediction: {{ prediction }}</p>
-  </div>
-
-  <button
-    (click)="getDietPlan()"
-    class="w-full bg-green-500 text-white p-2 rounded-md mt-4"
-    [disabled]="isLoading"
-  >
-    {{ isLoading ? "Fetching Diet Plan..." : "Get Diet Plan" }}
-  </button>
-
-  <div *ngIf="isLoading" class="mt-4 text-center">
-    <p>Loading diet plan...</p>
-  </div>
-
-  <div *ngIf="errorMessage" class="mt-4 text-red-500">
-    <p>{{ errorMessage }}</p>
-  </div>
-
-  <div *ngIf="dietPlan" class="mt-4">
-    <h3 class="text-xl font-bold mb-2">Diet Plan</h3>
-    <pre class="bg-gray-100 p-4 rounded-md">{{ dietPlan | json }}</pre>
-  </div>
-</div> -->
 <div class="container mx-auto py-6">
+  <!-- Header (Outside Result Container) -->
   <div class="mb-6 flex justify-between items-center">
-    <h1 class="text-3xl font-bold">{{ getResultTitle() }}</h1>
+    <h1 class="text-3xl font-bold text-secondary">{{ getResultTitle() }}</h1>
     <div>
-      <button
-        (click)="goBack()"
-        class="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300 mr-2"
-      >
-        Back
-      </button>
-      <button
-        (click)="navigateHome()"
-        class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-      >
-        Home
-      </button>
+      <button (click)="goBack()" class="btn-light mr-5">Back</button>
+      <button (click)="navigateHome()" class="btn-dark">Back to Home</button>
     </div>
   </div>
 
-  <div class="bg-green-500 rounded-lg shadow-md p-6">
-    <!-- Translation Result -->
-    <div
-      *ngIf="resultType === 'translation' || resultType === 'audio-translation'"
-      class="mb-6"
-    >
-      <div class="mb-4">
-        <h3 class="text-lg font-semibold mb-2">Original Text</h3>
-        <div class="p-3 bg-gray-100 rounded-md">
-          <p *ngIf="resultType === 'translation'">{{ originalContent }}</p>
-          <p *ngIf="resultType === 'audio-translation'">
-            Audio File: {{ fileName }}
-          </p>
+  <!-- Centered Result Container -->
+  <div class="w-full flex justify-center">
+    <div class="box_style w-full max-w-4xl">
+      <!-- Translation Result -->
+      <div
+        *ngIf="
+          resultType === 'translation' || resultType === 'audio-translation'
+        "
+      >
+        <div class="section">
+          <h3 class="sub_title">Original Text</h3>
+          <div class="box_content">
+            <p *ngIf="resultType === 'translation'">{{ originalContent }}</p>
+            <p *ngIf="resultType === 'audio-translation'">
+              Audio File: {{ fileName }}
+            </p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3 class="sub_title">Translated Text ({{ getLanguageName() }})</h3>
+          <div class="box_content">
+            <p>{{ result?.data?.result || "No translation available" }}</p>
+          </div>
         </div>
       </div>
 
-      <div>
-        <h3 class="text-lg font-semibold mb-2">
-          Translated Text ({{ getLanguageName() }})
-        </h3>
-        <div class="p-3 bg-gray-100 rounded-md">
-          <p>{{ result?.data?.result || "No translation available" }}</p>
+      <!-- Improved Text Result -->
+      <div *ngIf="resultType === 'improved-text'">
+        <div class="section">
+          <h3 class="sub_title">Original Text</h3>
+          <div class="box_content">
+            <p>{{ originalContent }}</p>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Improved Text Result -->
-    <div *ngIf="resultType === 'improved-text'" class="mb-6">
-      <div class="mb-4">
-        <h3 class="text-lg font-semibold mb-2">Original Text</h3>
-        <div class="p-3 bg-gray-100 rounded-md">
-          <p>{{ originalContent }}</p>
+        <div class="section">
+          <h3 class="sub_title">Improved Text</h3>
+          <div class="box_content">
+            <p>{{ result?.data?.result || "No improved text available" }}</p>
+          </div>
         </div>
       </div>
 
-      <div>
-        <h3 class="text-lg font-semibold mb-2">Improved Text</h3>
-        <div class="p-3 bg-gray-100 rounded-md">
-          <p>{{ result?.data?.result || "No improved text available" }}</p>
+      <!-- Article Summary Result -->
+      <div *ngIf="resultType === 'article-summary'">
+        <div class="section">
+          <h3 class="sub_title">Original Article</h3>
+          <div class="box_content max-h-48 overflow-y-auto">
+            <p>{{ originalContent }}</p>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Article Summary Result -->
-    <div *ngIf="resultType === 'article-summary'" class="mb-6">
-      <div class="mb-4">
-        <h3 class="text-lg font-semibold mb-2">Original Article</h3>
-        <div class="p-3 bg-gray-100 rounded-md max-h-48 overflow-y-auto">
-          <p>{{ originalContent }}</p>
+        <div class="section">
+          <h3 class="sub_title">Summary</h3>
+          <div class="box_content">
+            <p>{{ result?.data?.result || "No summary available" }}</p>
+          </div>
         </div>
       </div>
 
-      <div>
-        <h3 class="text-lg font-semibold mb-2">Summary</h3>
-        <div class="p-3 bg-gray-100 rounded-md">
-          <p>{{ result?.data?.result || "No summary available" }}</p>
+      <!-- Prediction Result -->
+      <div *ngIf="resultType === 'prediction'">
+        <div class="section">
+          <h3 class="text-xl font-semibold mb-2">Diabetes Prediction Result</h3>
+          <div class="p-4 rounded-md" [ngClass]="getPredictionColorClass()">
+            <p class="text-lg font-bold">{{ getPredictionMessage() }}</p>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Prediction Result -->
-    <div *ngIf="resultType === 'prediction'" class="mb-6">
-      <div class="mb-4">
-        <h3 class="text-xl font-semibold mb-2">Diabetes Prediction Result</h3>
-        <div class="p-4 rounded-md" [ngClass]="getPredictionColorClass()">
-          <p class="text-lg font-bold">{{ getPredictionMessage() }}</p>
-        </div>
-      </div>
-      <div>
-        <h3 class="text-lg font-semibold mb-2">Confidence Score</h3>
-        <div class="p-3 bg-gray-100 rounded-md">
-          <p>
-            {{
-              result?.data?.result !== undefined
-                ? (result.data.result * 100).toFixed(2) + "%"
-                : "No score available"
-            }}
-          </p>
+        <div class="section">
+          <h3 class="sub_title">Confidence Score</h3>
+          <div class="box_content">
+            <p>
+              {{
+                result?.data?.result !== undefined
+                  ? (result.data.result * 100).toFixed(2) + "%"
+                  : "No score available"
+              }}
+            </p>
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
-<div class="max-w-5xl bg-green-500 mx-auto py-8 px-6">
+<div class="max-w-7xl w-full mx-auto py-3 px-2 flex flex-col items-start">
   <!-- Header Section -->
-  <div class="flex justify-between items-center mb-8">
+  <div class="w-full flex justify-between items-center mb-6">
     <h1 class="text-4xl font-bold text-secondary">Translation Tools</h1>
     <button
       (click)="navigateHome()"
@@ -10,42 +10,48 @@
     </button>
   </div>
 
-  <!-- Tab Buttons -->
-  <div class="mb-6 flex space-x-4">
-    <button
-      (click)="setActiveTab('text')"
-      class="px-8 py-3 text-lg rounded-lg font-semibold transition"
-      [ngClass]="
-        activeTab === 'text'
-          ? 'bg-primary text-light shadow-lg'
-          : 'bg-light/30 text-secondary hover:bg-light/50'
-      "
-    >
-      Text Translation
-    </button>
-    <button
-      (click)="setActiveTab('audio')"
-      class="px-8 py-3 text-lg rounded-lg font-semibold transition"
-      [ngClass]="
-        activeTab === 'audio'
-          ? 'bg-primary text-light shadow-lg'
-          : 'bg-light/30 text-secondary hover:bg-light/50'
-      "
-    >
-      Audio Translation
-    </button>
+  <!-- Tab Selection (Styled Toggle) -->
+  <div class="wrapper mb-6">
+    <div class="option">
+      <input
+        type="radio"
+        name="tab"
+        id="textTab"
+        class="input"
+        [checked]="activeTab === 'text'"
+        (change)="setActiveTab('text')"
+      />
+      <div class="btn">
+        <span class="span">Text</span>
+      </div>
+    </div>
+    <div class="option">
+      <input
+        type="radio"
+        name="tab"
+        id="audioTab"
+        class="input"
+        [checked]="activeTab === 'audio'"
+        (change)="setActiveTab('audio')"
+      />
+      <div class="btn">
+        <span class="span">Audio</span>
+      </div>
+    </div>
   </div>
 
-  <!-- Tab Content -->
-  <div
-    class="p-8 bg-light/30 backdrop-blur-lg border border-white/20 rounded-lg shadow-lg"
-  >
-    <div *ngIf="activeTab === 'text'">
-      <app-text-translator></app-text-translator>
-    </div>
+  <!-- Tab Content (Centered) -->
+  <div class="w-full flex justify-center">
+    <div
+      class="p-2 bg-light/30 backdrop-blur-lg border border-white/20 rounded-lg shadow-lg w-full max-w-4xl min-h-[400px] flex justify-center items-center"
+    >
+      <div *ngIf="activeTab === 'text'">
+        <app-text-translator></app-text-translator>
+      </div>
 
-    <div *ngIf="activeTab === 'audio'">
-      <app-audio-translator></app-audio-translator>
+      <div *ngIf="activeTab === 'audio'">
+        <app-audio-translator></app-audio-translator>
+      </div>
     </div>
   </div>
 </div>

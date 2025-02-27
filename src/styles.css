@@ -5,6 +5,7 @@
 .bg-custom {
   background: url("/background.svg") no-repeat center center fixed;
   background-size: cover;
+  min-height: 100vh; /* Ensure it grows beyond viewport if needed */
+  height: auto; /* Allow it to expand with content */
   width: 100%;
-  height: 100vh;
 }

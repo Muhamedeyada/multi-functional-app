@@ -1,0 +1,31 @@
+/* Buttons */
+/* Back Button (Light Style) */
+.btn-light {
+  @apply px-5 py-2 bg-gray-100 text-gray-700 rounded-md border border-gray-300
+         hover:bg-gray-200 hover:text-gray-900 transition;
+}
+
+/* Primary Button (Dark Style) */
+.btn-dark {
+  @apply px-5 py-2 bg-dark text-light rounded-md hover:bg-dark/80 transition;
+}
+
+/* Result Box */
+.box_style {
+  @apply bg-light/30 backdrop-blur-lg border border-white/20 rounded-lg shadow-lg p-6;
+}
+
+/* Section Wrapper */
+.section {
+  @apply mb-6;
+}
+
+/* Title Styles */
+.sub_title {
+  @apply text-lg font-semibold mb-2 text-light/80;
+}
+
+/* Content Box */
+.box_content {
+  @apply p-3 border border-white/20 bg-light/20 rounded-md text-dark shadow-sm;
+}

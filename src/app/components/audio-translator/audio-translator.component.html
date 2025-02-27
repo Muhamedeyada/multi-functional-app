@@ -1,25 +1,34 @@
-<div class="max-w-md mx-auto mt-6 p-6 bg-white rounded-lg shadow-md">
-  <h2 class="text-2xl font-bold mb-6">Audio Translation</h2>
+<div
+  class="w-80 mt-2 p-6 bg-light/10 backdrop-blur-xl border border-white/20 rounded-lg shadow-2xl"
+>
+  <h2 class="text-2xl font-bold mb-6 text-light drop-shadow-lg">
+    Audio Translation
+  </h2>
+
   <form (ngSubmit)="onSubmit()">
+    <!-- Audio Upload -->
     <div class="mb-4">
-      <label class="block text-gray-700">Upload Audio File</label>
-      <input
-        type="file"
-        (change)="onFileChange($event)"
-        accept="audio/*"
-        class="mt-1 p-2 w-full border rounded-md"
-      />
-      <p *ngIf="selectedFile" class="mt-2 text-sm text-gray-600">
+      <label class="block text-light/80 font-semibold">Upload Audio File</label>
+      <div class="grid w-full max-w-xs items-center gap-1.5">
+        <input
+          type="file"
+          (change)="onFileChange($event)"
+          accept="audio/*"
+          class="flex w-full rounded-md border border-white/20 bg-light/20 text-sm text-light file:border-0 file:bg-primary file:text-white file:text-sm file:font-medium cursor-pointer shadow-sm"
+        />
+      </div>
+      <p *ngIf="selectedFile" class="mt-2 text-sm text-light/70">
         Selected file: {{ selectedFile.name }} ({{ getFileSize() }})
       </p>
     </div>
 
+    <!-- Target Language Select -->
     <div class="mb-4">
-      <label class="block text-gray-700">Target Language</label>
+      <label class="block text-light/80 font-semibold">Target Language</label>
       <select
         [(ngModel)]="targetLanguage"
         name="targetLanguage"
-        class="mt-1 p-2 w-full border rounded-md"
+        class="mt-1 p-3 w-full border border-white/20 bg-light/20 rounded-md text-dark shadow-sm"
       >
         <option *ngFor="let language of languages" [value]="language.code">
           {{ language.name }}
@@ -27,10 +36,11 @@
       </select>
     </div>
 
+    <!-- Submit Button -->
     <button
       type="submit"
       [disabled]="isLoading || !selectedFile"
-      class="w-full bg-blue-500 text-white p-2 rounded-md"
+      class="w-full bg-primary text-light p-3 font-semibold rounded-lg hover:bg-hoverPrimary transition shadow-lg backdrop-blur-md"
       [ngClass]="{
         'opacity-50 cursor-not-allowed': isLoading || !selectedFile
       }"
@@ -38,7 +48,9 @@
       {{ isLoading ? "Translating..." : "Translate Audio" }}
     </button>
   </form>
-  <div *ngIf="errorMessage" class="mt-4 text-red-500">
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="mt-4 text-red-400 font-semibold text-center">
     <p>{{ errorMessage }}</p>
   </div>
 </div>

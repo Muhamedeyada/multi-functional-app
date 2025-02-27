@@ -18,6 +18,8 @@ export class TextTranslatorComponent {
   isLoading: boolean = false;
   errorMessage: string | null = null;
   languages: any[] = [];
+  selectedLanguage: { code: string; name: string } | null = null;
+  isDropdownOpen = false;
 
   constructor(
     private predictionService: PredictionService,
@@ -27,6 +29,13 @@ export class TextTranslatorComponent {
     this.languages = this.languageService.getLanguages();
   }
 
+  selectLanguage(language: { code: string; name: string }) {
+    this.selectedLanguage = language;
+    this.targetLanguage = language.code;
+  }
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
   onSubmit() {
     if (!this.text) return;
 

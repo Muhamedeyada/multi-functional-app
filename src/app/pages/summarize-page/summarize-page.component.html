@@ -1,13 +1,18 @@
 <div class="container mx-auto py-6">
   <div class="mb-6 flex justify-between items-center">
-    <h1 class="text-3xl font-bold">Article Summarizer</h1>
+    <h1 class="text-4xl font-bold text-secondary">Article Summarizer</h1>
     <button
       (click)="navigateHome()"
-      class="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300"
+      class="px-5 py-2 bg-dark text-light rounded-md hover:bg-dark/80 transition"
     >
       Back to Home
     </button>
   </div>
-
-  <app-article-summarizer></app-article-summarizer>
+  <div class="w-full flex justify-center">
+    <div
+      class="bg-light/30 backdrop-blur-lg border border-white/20 rounded-lg shadow-lg w-full max-w-4xl min-h-[400px] flex justify-center items-center"
+    >
+      <app-article-summarizer></app-article-summarizer>
+    </div>
+  </div>
 </div>
